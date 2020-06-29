@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- 更新序号规则 Auto Internal Reference. -->
+        <!-- 目录自动编号. -->
+        <record id="seq_product_category_default" model="ir.sequence">
+            <field name="name">Default Sequence for Product Category</field>
+            <field name="code">product.category.default</field>
+            <field name="prefix">CAT-</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

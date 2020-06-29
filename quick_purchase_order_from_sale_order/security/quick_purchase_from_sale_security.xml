@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+	    <record id="group_create_quick_purchase_from_sale" model="res.groups">
+	        <field name="name">Quick Purchase Order from Sales Order</field>
+	        <field name="category_id" ref="base.module_category_hidden"/>
+	    </record>
+	</data>
+</odoo>

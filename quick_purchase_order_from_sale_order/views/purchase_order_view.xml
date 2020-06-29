@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="view_purchase_order_form_ip" model="ir.ui.view">
+		<field name="name">purchase.order.form.ip</field>
+		<field name="model">purchase.order</field>
+		<field name="arch" type="xml">
+			<form string="Orders">
+				<sheet>
+					<group>
+						<group>
+							<field name="state" invisible="1"/>
+							<field name="company_id" invisible="1"/>
+							<field name="partner_id" widget="res_partner_many2one" context="{'res_partner_search_mode': 'supplier', 'show_vat': True}" placeholder="Name, TIN, Email, or Reference"/>
+						</group>
+						<group>
+							<field name="order_id" widget="many2one_tags"/>
+                            <field name="date_order" widget="date"/>
+						</group>
+					</group>
+					<notebook>
+                        <page string="Products">
+                            <field name="order_line">
+                             	<tree string="Purchase Order Lines" editable="bottom">
+                             		<field name="product_uom_category_id" invisible="1"/>
+                            		<field name="sequence" widget="handle"/>
+                                    <field name="product_id" context="{'partner_id':parent.partner_id, 'quantity':product_qty,'uom':product_uom, 'company_id':parent.company_id}" domain="[('purchase_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"/>
+                                    <field name="name"/>
+                                    <field name="product_qty"/>
+                                    <field name="product_uom" groups="uom.group_uom" force_save="1"/>
+                                    <field name="price_unit"/>
+                                    <field name="taxes_id" widget="many2many_tags" options="{'no_create': True}" domain="[('type_tax_use','=','purchase'), ('company_id', '=', parent.company_id)]" context="{'default_type_tax_use' : 'purchase'}"/>
+                                    <field name="price_subtotal" widget="monetary"/>
+                                    <field name="currency_id" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_purchase_order_form_ip" model="ir.actions.act_window">
+		<field name="name">Purchase Order</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">purchase.order</field>
+		<field name="view_id" ref="view_purchase_order_form_ip"/>
+	</record>
+
+</odoo>

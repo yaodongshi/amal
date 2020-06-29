@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!--原有目录对应产品编号初始化-->
+        <record id="product.product_category_all" model="product.category">
+            <field name="ref">CAT-ALL</field>
+            <field name="app_default_type">product</field>
+            <field name="app_default_sale_ok">1</field>
+            <field name="app_default_purchase_ok">1</field>
+            <field name="app_default_rental">0</field>
+        </record>
+    </data>
+</odoo>

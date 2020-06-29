@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--目录list-->
+        <record id="app_product_category_list_view" model="ir.ui.view">
+            <field name="name">app.product.category.list</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_list_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='display_name']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='display_name']" position="before">
+                    <field name="sequence" widget="handle"/>
+                    <field name="id" groups="base.group_no_one"/>
+                    <field name="complete_name" groups="base.group_no_one"/>
+                    <field name="name"/>
+                    <field name="parent_id"/>
+                    <field name="ref"/>
+                </xpath>
+                <xpath expr="//field[@name='display_name']" position="after">
+                    <field name="app_default_type"/>
+                    <field name="app_default_sale_ok"/>
+                    <field name="app_default_purchase_ok"/>
+                    <field name="app_default_rental"/>
+                </xpath>
+            </field>
+        </record>
+        <!--目录list，高级可编辑-->
+        <record id="app_product_category_list_view2" model="ir.ui.view">
+            <field name="name">app.product.category.list2</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_list_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="multi_edit">1</attribute>
+                </xpath>
+            </field>
+        </record>
+        <!--目录Form-->
+        <record id="app_product_category_form_view" model="ir.ui.view">
+            <field name="name">app.product.category.form</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='parent_id']" position="after">
+                    <field name="ref"/>
+                    <field name="sequence"/>
+                </xpath>
+                <xpath expr="//group[@name='first']" position="after">
+                    <group string="Default value for product in this category">
+                        <group>
+                            <field name="app_default_type"/>
+                            <field name="app_default_tracking"/>
+                        </group>
+                        <group>
+                            <field name="app_default_sale_ok"/>
+                            <field name="app_default_purchase_ok"/>
+                            <field name="app_default_rental"/>
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+        <!--搜索Form-->
+        <record id="product_category_search_view_auto_code" model="ir.ui.view">
+            <field name="name">product.category.search.internal_type</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_search_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="ref"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

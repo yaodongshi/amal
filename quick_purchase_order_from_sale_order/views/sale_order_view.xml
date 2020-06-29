@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_sale_order_inherit_form_ip" model="ir.ui.view">
+            <field name="name">sale.order.inherit.form.ip</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/header" position="inside">
+                    <button name="%(quick_purchase_order_from_sale_order.action_purchase_order_form_ip)d" type="action" string="Create Purchase Order" class="oe_highlight"  attrs="{'invisible': [('state', 'in', ['draft','sent','done','cancel'])]}" groups="quick_purchase_order_from_sale_order.group_create_quick_purchase_from_sale"/>
+                </xpath>
+                <xpath expr="//form/sheet/div[hasclass('oe_button_box')]" position="inside">
+                    <button name="action_purchase_order" type="object" class="oe_stat_button" icon="fa-credit-card" context="{'create': False, 'import': False}" attrs="{'invisible': [('order_count', '=', 0)]}" groups="quick_purchase_order_from_sale_order.group_create_quick_purchase_from_sale">
+                        <div class="o_stat_info">
+                            <field name="order_count" class="o_stat_value"/>
+                            <span class="o_stat_text">Purchase Order</span>
+                        </div>
+                    </button>
+                </xpath>
+                <xpath expr="/form/sheet/notebook/page[1]/field[@name='order_line']/tree/field[@name='qty_delivered']" position="after">
+                    <field name ="qty_purchase"  attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}" groups="quick_purchase_order_from_sale_order.group_create_quick_purchase_from_sale"/>
+                    <field name ="purchase_line_ids" invisible="1"></field>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
