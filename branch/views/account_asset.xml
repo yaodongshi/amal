@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_account_asset_inherit_branch" model="ir.ui.view">
+            <field name="name">view.account.asset.inherit.branch</field>
+            <field name="model">account.asset</field>
+            <field name="inherit_id" ref="account_asset.view_account_asset_form"/>
+            <field name="arch" type="xml">
+                <field name="first_depreciation_date" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="branch_id" options="{'no_open': True, 'no_create': True, 'no_create_edit': True}"/>
+                </field>
+            </field>
+        </record>
+        <record id="view_account_asset_tree_inherit_branch" model="ir.ui.view">
+            <field name="name">view.account.asset.inherit.branch</field>
+            <field name="model">account.asset</field>
+            <field name="inherit_id" ref="account_asset.view_account_asset_purchase_tree"/>
+            <field name="arch" type="xml">
+                <field name="company_id" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="branch_id"/>
+                </field>
+            </field>
+        </record>
+        <record id="view_account_asset_filter_inherit_branch" model="ir.ui.view">
+            <field name="name">view.account.asset.inherit.branch</field>
+            <field name="model">account.asset</field>
+            <field name="inherit_id" ref="account_asset.view_account_asset_search"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="branch_id"/>
+                    <filter string="Branch" name="branch" domain="[]" context="{'group_by':'branch_id'}"/>
+                </field>
+            </field>
+        </record>
+        <record id="view_account_account_inherit_branch" model="ir.ui.view">
+            <field name="name">view.account.account.inherit.branch</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_form"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="branch_id" options="{'no_open': True, 'no_create': True, 'no_create_edit': True}"/>
+                </field>
+            </field>
+        </record>
+        <record id="view_account_account_tree_inherit_branch" model="ir.ui.view">
+            <field name="name">view.account.account.inherit.branch</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_list"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="branch_id"/>
+                </field>
+            </field>
+        </record>
+        <record id="view_account_account_filter_inherit_branch" model="ir.ui.view">
+            <field name="name">view.account.account.inherit.branch</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_search"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="branch_id"/>
+                    <filter string="Branch" name="branch" domain="[]" context="{'group_by':'branch_id'}"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

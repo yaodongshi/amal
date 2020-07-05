@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_hr_contract_inherit_branch" model="ir.ui.view">
+            <field name="name">view.contract.inherit.branch</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+                <field name="job_id" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="branch_id" options="{'no_open': True, 'no_create': True, 'no_create_edit': True}"/>
+                </field>
+            </field>
+        </record>
+        <record id="view_hr_contract_tree_inherit_branch" model="ir.ui.view">
+            <field name="name">view.contract.inherit.branch</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_tree"/>
+            <field name="arch" type="xml">
+                <field name="job_id" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="branch_id"/>
+                </field>
+            </field>
+        </record>
+        <record id="view_hr_contract_filter_inherit_branch" model="ir.ui.view">
+            <field name="name">view.hr_contract.inherit.branch</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_search"/>
+            <field name="arch" type="xml">
+                <field name="job_id" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="branch_id"/>
+                    <filter string="Branch" name="branch" domain="[]" context="{'group_by':'branch_id'}"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

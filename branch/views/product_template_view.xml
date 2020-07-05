@@ -1,0 +1,56 @@
+<odoo>
+    <data>
+        <record id="view_inherit_form_add_branch" model="ir.ui.view">
+            <field name="name">view.inherit.product.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='barcode']" position="after">
+                    <field name="branch_id" options="{'no_open': True, 'no_create': True, 'no_create_edit': True}"/>
+                </xpath>
+
+            </field>
+        </record>
+        <record id="view_inherit_product_product_form_add_branch" model="ir.ui.view">
+            <field name="name">product product form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='barcode']" position="after">
+                    <field name="branch_id"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="product_template_tree_view_inherit_branch" model="ir.ui.view">
+            <field name="name">product.template.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='standard_price']" position="after">
+                    <field name="branch_id"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="product_product_tree_view_inherit_branch" model="ir.ui.view">
+            <field name="name">product.product.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_product_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='type']" position="after">
+                    <field name="branch_id"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="product_template_search_view_inherit_branch" model="ir.ui.view">
+            <field name="name">product.template.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_search_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='categ_id']" position="after">
+                    <field name="branch_id"/>
+                    <filter string="Branch" name="Branch" context="{'group_by':'branch_id'}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
