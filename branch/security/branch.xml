@@ -240,16 +240,20 @@
             </field>
             <!--<field name="groups" eval="[(4, ref('branch.group_branch_user_manager'))]"/>-->
         </record>
-        <record id="purchase_request_branch_rule" model="ir.rule">
-            <field name="name">Purchase Request Branch Rule</field>
-            <field name="model_id" ref="model_purchase_request"/>
-            <field name="global" eval="True"/>
-            <field name="domain_force">['|','|',('branch_id','=',user.branch_id.id),('branch_id','in',[branch.id for
-                branch in
-                user.branch_ids]), ('branch_id', '=', False)]
-            </field>
-            <!--<field name="groups" eval="[(4, ref('branch.group_branch_user_manager'))]"/>-->
-        </record>
+
+
+        <!--<record id="purchase_request_branch_rule" model="ir.rule">-->
+            <!--<field name="name">Purchase Request Branch Rule</field>-->
+            <!--<field name="model_id" ref="model_purchase_request"/>-->
+            <!--<field name="global" eval="True"/>-->
+            <!--<field name="domain_force">['|','|',('branch_id','=',user.branch_id.id),('branch_id','in',[branch.id for-->
+                <!--branch in-->
+                <!--user.branch_ids]), ('branch_id', '=', False)]-->
+            <!--</field>-->
+            <!--&lt;!&ndash;<field name="groups" eval="[(4, ref('branch.group_branch_user_manager'))]"/>&ndash;&gt;-->
+        <!--</record>-->
+
+
         <record id="account_account_branch_rule" model="ir.rule">
             <field name="name">Chart of Account Branch Rule</field>
             <field name="model_id" ref="model_account_account"/>

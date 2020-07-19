@@ -42,7 +42,7 @@ operating-Unit Operation for POS,operating-Unit Operation for Sales,operating-Un
     """,
     'website': 'http://www.browseinfo.in',
     'depends': ['base', 'sale_management', 'purchase', 'stock', 'account', 'purchase_stock', 'account_accountant', 'hr',
-                'hr_contract', 'product', 'hr_payroll','purchase_request','account_asset'],
+                'hr_contract', 'product', 'hr_payroll','account_asset'],
     'data': [
         'security/branch.xml',
         'security/ir.model.access.csv',
@@ -63,7 +63,7 @@ operating-Unit Operation for POS,operating-Unit Operation for Sales,operating-Un
         'views/hr_employee_view.xml',
         'views/hr_contract_view.xml',
         'views/hr_payroll_view.xml',
-        'views/purchase_request.xml',
+        # 'views/purchase_request.xml',
         'views/account_asset.xml',
         # 'views/inherited_pos_config.xml',
 

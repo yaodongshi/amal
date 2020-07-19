@@ -23,7 +23,7 @@ from . import res_partner
 from . import product_template
 from . import account_analytic_account
 from . import account_asset
-from . import purchase_request
+# from . import purchase_request
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
