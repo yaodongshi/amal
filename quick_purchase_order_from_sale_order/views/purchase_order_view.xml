@@ -15,6 +15,7 @@
 						<group>
 							<field name="order_id" widget="many2one_tags"/>
                             <field name="date_order" widget="date"/>
+							<field name="picking_type_id" domain="[('code','=','incoming'), '|', ('warehouse_id', '=', False), ('warehouse_id.company_id', '=', company_id)]" options="{'no_create': True}" groups="stock.group_stock_multi_locations"/>
 						</group>
 					</group>
 					<notebook>
