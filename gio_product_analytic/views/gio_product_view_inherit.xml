@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-
     <record id="gio_product_report_lotnumber" model="ir.ui.view">
-       <field name="name">gio.product.report.lotnumber</field>
-       <field name="model">product.template</field>
-       <field name="inherit_id" ref="product.product_template_only_form_view"/>
-       <field name="arch" type="xml">
-           <field name="barcode" position="after">
-               <field name="gio_analytic_account" string="Analytic Account" />
-               <field name="gio_analytic_tag" string="Analytic Tag"/>
-           </field>
+        <field name="name">gio.product.report.lotnumber</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <field name="barcode" position="after">
+                <field name="gio_analytic_account" string="Analytic Account"/>
+                <field name="gio_analytic_tag" string="Analytic Tag"/>
+            </field>
         </field>
     </record>
-
-
+    <!--added by doaa-->
+    <record id="view_account_analytic_account_form_inherit_product" model="ir.ui.view">
+        <field name="name">view.account.analytic.account.inherit.product</field>
+        <field name="model">account.analytic.account</field>
+        <field name="inherit_id" ref="analytic.view_account_analytic_account_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="product_id" options="{'no_open': True, 'no_create': True, 'no_create_edit': True}"/>
+            </field>
+        </field>
+    </record>
 </odoo>
