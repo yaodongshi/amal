@@ -28,7 +28,9 @@
                 'product',
                 'stock',
                 'stock_account',
+                'sale_stock',
                 'purchase',
+                'account',
                 ],
     'data': [
         'views/gio_product_view_inherit.xml'

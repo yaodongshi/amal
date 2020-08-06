@@ -22,4 +22,17 @@
             </field>
         </field>
     </record>
+
+     <!--added by marwa ahmed-->
+      <record id="add_analytic_account_in_view" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//page/field[@name='order_line']/tree/field[@name='price_unit']" position="before">
+                    <field name="sale_analytic_account_id" optional="show"/>
+                </xpath>
+
+            </field>
+        </record>
 </odoo>
