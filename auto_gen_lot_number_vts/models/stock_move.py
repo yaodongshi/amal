@@ -4,10 +4,17 @@ import time
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 
+
+
+
 class stock_move(models.Model):
     _inherit="stock.move"
 
+
+    # edit by marwa ahmed
+
     def _prepare_move_line_vals(self, quantity=None, reserved_quant=None):
+
         result = super(stock_move, self)._prepare_move_line_vals(quantity,reserved_quant)
         if self.purchase_line_id and not self.picking_id.backorder_id:
             if self.product_id.tracking == 'lot':
@@ -18,14 +25,19 @@ class stock_move(models.Model):
                 elif auto_gen_lot_number == 'po_order_date':
                     #po_order_date = datetime.strptime(self.picking_id.purchase_id.date_order,"%Y-%m-%d %H:%M:%S")
                     date = datetime.strftime(self.picking_id.purchase_id.date_order,'%Y%m%d')
+                elif auto_gen_lot_number == 'analytic_account':
+                    date = self.analytic_account_id.name
+                    # print("iiiiiiiiiiiiiiiiiiiiiii",date)
                 else:
                     date = datetime.now().strftime('%Y%m%d')
+
                 counter = 1
                 lot_id_name=date
                 lot_ids=self.env['stock.production.lot'].search([('product_id','=',self.product_id.id),('name',"ilike",date)])
                 for lot in lot_ids:
                     counter+=1
                     lot_id_name=date+str(counter)
+                    # print('00000000000000000000000000000',lot_id_name)
                 vals={
                     "product_id":self.product_id.id,
                     "name":lot_id_name,
@@ -44,3 +56,5 @@ class stock_move(models.Model):
                         lot_id=lot_id.id,
                         qty_done=self.product_uom_qty)
         return result
+
+

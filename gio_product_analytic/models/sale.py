@@ -50,6 +50,13 @@ class SaleOrderLine(models.Model):
 
         return res
 
+    # # override function to send data from sale order line to picking line on create inv
+    # def _prepare_procurement_values(self, group_id=False):
+    #     print("ppppppppppppppppppppppppppppppp")
+    #     res = super(SaleOrderLine, self)._prepare_procurement_values(group_id)
+    #     res.update({'analytic_account_id': self.sale_analytic_account_id.id})
+    #     return res
+
 
 
 # add by marwa ahmed
