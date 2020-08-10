@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_employee_advance,employee_advance,model_employee_advance,,1,1,1,1
-access_advance_departments,advance_departments,model_advance_departments,,1,1,1,1
-access_advance_departments_line,advance_departments_line,model_advance_departments_line,,1,1,1,1
