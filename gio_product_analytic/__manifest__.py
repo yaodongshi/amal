@@ -33,6 +33,7 @@
                 'account',
                 ],
     'data': [
-        'views/gio_product_view_inherit.xml'
+        'security/security.xml',
+        'views/gio_product_view_inherit.xml',
     ],
 }

@@ -17,6 +17,7 @@ class ProductTemplate(models.Model):
         name = res.name
         default_code = res.default_code
         analytic_name = str(default_code) + '/' + name
+        print("create")
         res.gio_analytic_account = self.env['account.analytic.account'].create(
             {'name': analytic_name, 'product_id': res.id}).id
         return res
@@ -31,9 +32,10 @@ class ProductTemplate(models.Model):
                 self.gio_analytic_account.product_id = self.id
             if self.gio_analytic_account:
                 self.gio_analytic_account.name = analytic_name
-            else:
-                self.gio_analytic_account = self.env['account.analytic.account'].create(
-                    {'name': analytic_name, 'product_id': self.id}).id
+            # else:
+            #     print("write")
+            #     self.gio_analytic_account = self.env['account.analytic.account'].create(
+            #         {'name': analytic_name, 'product_id': self.id}).id
 
         if 'name' not in vals and 'default_code' in vals:
             name = self.name
@@ -43,9 +45,9 @@ class ProductTemplate(models.Model):
                 self.gio_analytic_account.product_id = self.id
             if self.gio_analytic_account:
                 self.gio_analytic_account.name = analytic_name
-            else:
-                self.gio_analytic_account = self.env['account.analytic.account'].create(
-                    {'name': analytic_name, 'product_id': self.id}).id
+            # else:
+            #     self.gio_analytic_account = self.env['account.analytic.account'].create(
+            #         {'name': analytic_name, 'product_id': self.id}).id
         if 'name' in vals and 'default_code' in vals:
             name = vals['name']
             default_code = vals['default_code']
@@ -54,9 +56,9 @@ class ProductTemplate(models.Model):
                 self.gio_analytic_account.product_id = self.id
             if self.gio_analytic_account:
                 self.gio_analytic_account.name = analytic_name
-            else:
-                self.gio_analytic_account = self.env['account.analytic.account'].create(
-                    {'name': analytic_name, 'product_id': self.id}).id
+            # else:
+            #     self.gio_analytic_account = self.env['account.analytic.account'].create(
+            #         {'name': analytic_name, 'product_id': self.id}).id
         return super(ProductTemplate, self).write(vals)
 
 # added by doaa

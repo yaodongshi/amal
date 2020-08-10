@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--doaa added-->
+    <data noupdate="0">
+        <record id="create_analytic_account" model="res.groups">
+            <field name="name">Create Analytic Account </field>
+            <field name="comment">The user will be able to Create Analytic Account from product.</field>
+        </record>
+    </data>
+</odoo>
