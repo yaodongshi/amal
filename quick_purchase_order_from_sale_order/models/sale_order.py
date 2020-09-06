@@ -13,7 +13,9 @@ class SaleOrder(models.Model):
     order_count = fields.Integer(compute='purchase_order_count')
 
     def action_purchase_order(self):
-        [action] = self.env.ref('purchase.purchase_order_tree').read()
+        # doaa added action of PO to appeare Purchases Orders that related to this so
+        # [action] = self.env.ref('purchase.purchase_order_tree').read()
+        [action] = self.env.ref('purchase.purchase_rfq').read()
         action['domain'] = [('order_id', 'in', self.ids)]
         return action
 

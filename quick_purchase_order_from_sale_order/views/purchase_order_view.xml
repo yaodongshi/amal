@@ -26,6 +26,8 @@
                             		<field name="sequence" widget="handle"/>
                                     <field name="product_id" context="{'partner_id':parent.partner_id, 'quantity':product_qty,'uom':product_uom, 'company_id':parent.company_id}" domain="[('purchase_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"/>
                                     <field name="name"/>
+									<field name="account_analytic_id" optional="hide" context="{'default_partner_id':parent.partner_id}" groups="analytic.group_analytic_accounting" domain="['|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"/>
+                                    <field name="analytic_tag_ids" optional="hide" groups="analytic.group_analytic_tags" widget="many2many_tags" options="{'color_field': 'color'}" domain="['|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"/>
                                     <field name="product_qty"/>
                                     <field name="product_uom" groups="uom.group_uom" force_save="1"/>
                                     <field name="price_unit"/>
