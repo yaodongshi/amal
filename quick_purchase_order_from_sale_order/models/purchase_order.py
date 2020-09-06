@@ -36,7 +36,11 @@ class PurchaseOrder(models.Model):
                     'product_uom': order_line.product_uom.id,
                     'currency_id': order.currency_id.id,
                     'sale_line_id': order_line.id,
-                    'taxes_id': order_line.tax_id}])
+                    'taxes_id': order_line.tax_id,
+                    'account_analytic_id': order_line.sale_analytic_account_id.id,
+                    'analytic_tag_ids': order_line.analytic_tag_ids.ids,
+
+                }])
             contextual_self = self.with_context({
                 'default_origin': order.name,
                 'default_order_id': order.id,
