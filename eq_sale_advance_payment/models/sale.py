@@ -26,6 +26,9 @@ class sale_order(models.Model):
                    'res_partner_search_mode': 'customer',
                    'default_partner_id': self.partner_id.id,
                    'default_communication': self.name,
+                   'active_ids':[],
+                   'active_model':self._name,
+                   'active_id':self.id,
                    'default_currency_id': self.currency_id.id}
         ctx = self._context.copy()
         ctx.update(cus_ctx)
@@ -38,7 +41,6 @@ class sale_order(models.Model):
             'type': 'ir.actions.act_window',
             'context': ctx
         }
-
 
 class account_payment(models.Model):
     _inherit = 'account.payment'
