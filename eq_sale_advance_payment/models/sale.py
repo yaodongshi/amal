@@ -33,7 +33,7 @@ class sale_order(models.Model):
                 'res_model': 'account.payment',
                 'target': 'new',
                 'view_id': self.env.ref('eq_sale_advance_payment.view_sale_advance_account_payment_form').id,
-                'context': ctx}
+                }
 
 
 class account_payment(models.Model):
