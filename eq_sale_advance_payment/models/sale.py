@@ -15,7 +15,7 @@ class sale_order(models.Model):
 
     def action_view_adv_payments(self):
         action = self.env.ref('account.action_account_payments').read()[0]
-        action['domain'] = [('id', 'in', self.adv_payment_ids.ids)]
+        action['domain'] = [('id', 'in', self.adv_payment_ids.ids)] if self.adv_payment_ids.ids else []
         action['context'] = {'create': 0}
         return action
 
