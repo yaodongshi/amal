@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit Form View to Modify it -->
+    <record id="view_inherit_res_partner_form" model="ir.ui.view">
+        <field name="name">view.inherit.res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <!-- position: after|before|replace|attributes|inside -->
+            <xpath expr="//field[@name='vat']" position="after">
+                <!-- Add your fields or attributes here -->
+                   <field name="is_broker" />
+              <field name="is_agent" />
+            </xpath>
+
+        </field>
+    </record>
+<!-- Inherit Form View to Modify it -->
+<record id="view_inherit_po_new_fields_form" model="ir.ui.view">
+    <field name="name">view.inherit.po.field.form</field>
+    <field name="model">purchase.order</field>
+    <field name="inherit_id" ref="purchase.purchase_order_form"/>
+    <field name="arch" type="xml">
+
+        <!-- position: after|before|replace|attributes|inside -->
+         <xpath expr="//field[@name='order_line']/tree//field[@name='taxes_id']" position="after">
+                <field name="e_t_s_date" widget="date" optional="hide" readonly="1" />
+              <field name="e_t_a_date" widget="date" optional="hide" readonly="1" />
+              <field name="Arrival_After_date" readonly="1" />
+              <field name="broker_id" optional="hide" readonly="1" />
+              <field name="agent_id" optional="hide" readonly="1" />
+              <field name="commission" optional="hide" />
+              <field name="full_container_load" optional="hide" readonly="1"  />
+              <field name="date_of_sending_bank" optional="hide" readonly="1"  />
+              <field name="packing" optional="hide" readonly="1" />
+              <field name="bank_name" optional="hide" readonly="1" />
+             <field name="origin_id"  optional="hide" readonly="1" />
+              <field name="power_of_attorney" optional="hide" readonly="1" />
+              <field name="shipping_line" optional="hide" readonly="1" />
+              <field name="bill_of_lading_number" optional="hide" readonly="1"  />
+              <field name="free_time" widget="time" optional="hide" readonly="1"  />
+              <field name="trans_time" widget="time" optional="hide" readonly="1" />
+              <field name="courier" optional="hide" readonly="1" />
+               <field name="tracking_no" optional="hide" readonly="1" />
+               <field name="in_bank_date" optional="hide" readonly="1" />
+               <field name="out_bank_date" optional="hide" readonly="1" />
+               <field name="sent_for_clearance" optional="hide" readonly="1" />
+              <field name="gomrk_cert" optional="hide" readonly="1" />
+               <field name="end_of_date" optional="hide" readonly="1" />
+               <field name="permission_of_date" optional="hide" readonly="1"  />
+               <field name="time_of_day" optional="hide" readonly="1" />
+               <field name="storage_letter" optional="hide" readonly="1"  />
+               <field name="debit_note_storage" optional="hide" readonly="1" />
+               <field name="demurrage_qualtiy" optional="hide" readonly="1" />
+               <field name="extra_charges" optional="hide" readonly="1" />
+              <field name="note" optional="hide" readonly="1" />
+
+            </xpath>
+            <xpath expr="//field[@name='order_line']/form//field[@name='taxes_id']" position="after">
+                    <field name="e_t_s_date" widget="date"/>
+              <field name="e_t_a_date" />
+              <field name="Arrival_After_date" />
+              <field name="broker_id" />
+              <field name="agent_id" />
+              <field name="commission" />
+              <field name="full_container_load" />
+              <field name="packing" />
+              <field name="bank_name" />
+              <field name="power_of_attorney" />
+              <field name="shipping_line" />
+              <field name="bill_of_lading_number" />
+              <field name="free_time" widget="time"/>
+              <field name="trans_time" widget="time"/>
+              <field name="courier" />
+               <field name="tracking_no" />
+               <field name="in_bank_date" />
+               <field name="out_bank_date" />
+               <field name="sent_for_clearance" />
+              <field name="gomrk_cert" />
+               <field name="end_of_date" />
+               <field name="permission_of_date" />
+               <field name="time_of_day" />
+               <field name="storage_letter" />
+               <field name="debit_note_storage" />
+               <field name="demurrage_qualtiy" />
+               <field name="extra_charges" />
+              <field name="note" />
+                <field name="date_of_sending_bank"  />
+                  <field name="origin_id"  />
+            </xpath>
+
+    </field>
+</record>
+    <record id="view_inherit_po_new_fields_form_readonly" model="ir.ui.view">
+            <field name="name">view_inherit_po_new_fields_form.readonly</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="po_fields.view_inherit_po_new_fields_form" />
+            <field name="groups_id" eval="[(6,0, [ref('po_fields.group_po_readonly')])]" />
+            <field name="arch" type="xml">
+
+                <field name="e_t_s_date" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+                 <field name="e_t_a_date" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+
+
+                <field name="Arrival_After_date" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+                 <field name="broker_id" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+
+                <field name="agent_id" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+                 <field name="commission" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+
+
+                <field name="full_container_load" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+                 <field name="packing" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+
+
+                <field name="bank_name" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+                 <field name="power_of_attorney" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+
+
+                <field name="shipping_line" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+                     <field name="bill_of_lading_number" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+                 <field name="free_time" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+
+
+                <field name="trans_time" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+                 <field name="date_of_sending_bank" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+
+
+                <field name="courier" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+                 <field name="tracking_no" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+
+
+                <field name="in_bank_date" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+                 <field name="out_bank_date" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+
+
+                <field name="sent_for_clearance" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+                 <field name="gomrk_cert" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+
+
+                <field name="end_of_date" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+
+
+                <field name="permission_of_date" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+                 <field name="time_of_day" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+
+
+                <field name="storage_letter" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+                 <field name="debit_note_storage" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+
+
+                <field name="demurrage_qualtiy" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+                 <field name="extra_charges" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+                 <field name="note" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+
+
+                <field name="origin_id" position="attributes">
+                   <attribute name="readonly">0</attribute>
+                </field>
+
+
+            </field>
+
+
+
+
+</record>
+</odoo>
