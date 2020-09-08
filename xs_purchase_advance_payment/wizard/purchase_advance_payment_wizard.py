@@ -104,7 +104,6 @@ class AccountVoucherWizard(models.TransientModel):
                            self[0].payment_ref or purchase.name,
                        'payment_method_id': self.env.
                            ref('account.account_payment_method_manual_out').id,
-                       'active_model': purchase._name,
                        'active_id': purchase.id,
                        }
         return payment_res
