@@ -72,7 +72,9 @@ class AccountVoucherWizard(models.TransientModel):
         purchase_ids = self.env.context.get('active_ids', [])
         if purchase_ids:
             payment_res = self.get_payment_res(purchase_ids)
-            payment = payment_obj.create(payment_res)
+            ctx = self._context.copy()
+            ctx.update(payment_res)
+            payment = payment_obj.create(ctx)
             if not no_post:
                 payment.post()
         return {
@@ -104,5 +106,8 @@ class AccountVoucherWizard(models.TransientModel):
                            self[0].payment_ref or purchase.name,
                        'payment_method_id': self.env.
                            ref('account.account_payment_method_manual_out').id,
+                       'active_ids': [],
+                       'active_model': purchase._name,
+                       'active_id': purchase.id,
                        }
         return payment_res
