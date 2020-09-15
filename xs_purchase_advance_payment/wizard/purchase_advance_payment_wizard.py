@@ -5,7 +5,6 @@ import odoo.addons.decimal_precision as dp
 
 
 class AccountVoucherWizard(models.TransientModel):
-
     _name = "account.purchase.voucher.wizard"
 
     journal_id = fields.Many2one('account.journal', 'Journal', required=True)
@@ -44,21 +43,23 @@ class AccountVoucherWizard(models.TransientModel):
 
         return res
 
-    @api.onchange('journal_id','date')
+    @api.onchange('journal_id', 'date')
     def onchange_date(self):
         if self.currency_id:
-          self.exchange_rate = self.env["res.currency"]._get_conversion_rate(self.env.user.company_id.currency_id, self.currency_id, self.env.user.company_id, self.date)
-          if self.amount_advance > 0 and self.exchange_rate > 0:
-            self.currency_amount = self.amount_advance * (1.0 / self.exchange_rate)
-            # self.exchange_rate = 1.0 / \
-            #     (self.env["res.currency"].with_context(date=self.date).
-            #      _get_conversion_rate(self.currency_id,
-            #                           (self.journal_id.currency_id or
-            #                           self.env.user.company_id.
-            #                           currency_id))
-            #      or 1.0)
-            # self.currency_amount = self.amount_advance * \
-            #     (1.0 / self.exchange_rate)
+            self.exchange_rate = self.env["res.currency"]._get_conversion_rate(self.env.user.company_id.currency_id,
+                                                                               self.currency_id,
+                                                                               self.env.user.company_id, self.date)
+            if self.amount_advance > 0 and self.exchange_rate > 0:
+                self.currency_amount = self.amount_advance * (1.0 / self.exchange_rate)
+                # self.exchange_rate = 1.0 / \
+                #     (self.env["res.currency"].with_context(date=self.date).
+                #      _get_conversion_rate(self.currency_id,
+                #                           (self.journal_id.currency_id or
+                #                           self.env.user.company_id.
+                #                           currency_id))
+                #      or 1.0)
+                # self.currency_amount = self.amount_advance * \
+                #     (1.0 / self.exchange_rate)
         else:
             self.exchange_rate = 1.0
 
@@ -69,7 +70,9 @@ class AccountVoucherWizard(models.TransientModel):
     def pay_advance_payment(self):
         no_post = self._context.get('no_post', False)
         payment_obj = self.env['account.payment']
-        purchase_ids = self.env.context.get('active_ids', [])
+        # purchase_ids = self.env.context.get('active_ids', [])
+        # doaa update this line
+        purchase_ids = self.env.context.get('active_id')
         if purchase_ids:
             payment_res = self.get_payment_res(purchase_ids)
             payment = payment_obj.create(payment_res)
@@ -82,7 +85,7 @@ class AccountVoucherWizard(models.TransientModel):
     def get_payment_res(self, purchase_ids):
         purchase_obj = self.env['purchase.order']
 
-        purchase_id = purchase_ids[0]
+        purchase_id = purchase_ids
         purchase = purchase_obj.browse(purchase_id)
 
         partner_id = purchase.partner_id.id
@@ -103,6 +106,6 @@ class AccountVoucherWizard(models.TransientModel):
                        'communication':
                            self[0].payment_ref or purchase.name,
                        'payment_method_id': self.env.
-                           ref('account.account_payment_method_manual_out').id
+                           ref('account.account_payment_method_manual_out').id,
                        }
         return payment_res
