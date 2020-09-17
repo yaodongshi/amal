@@ -11,8 +11,8 @@
     'E-mail': "doaakhaled6969@gmail.com",
     'images': ['static/description/icon.png'],
     'data': [
-        'security/ir.model.access.csv',
         'security/security.xml',
+        'security/ir.model.access.csv',
         'views/sequence.xml',
         'views/product_template_view.xml',
         'views/purchase_contract_view.xml',
