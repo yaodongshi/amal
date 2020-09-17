@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_inherit_purchase_order_form_contract" model="ir.ui.view">
+            <field name="name">view.inherit.purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='currency_id']" position="after">
+                    <field name="contract_id" options="{'no_create': True, 'no_open': True}"/>
+                    <field name="purchase_contract_id_line" options="{'no_create': True, 'no_open': True}"/>
+                </xpath>
+                <button name="action_view_invoice" position="attributes">
+                    <attribute name="context">{'create_bill':True,'contract_id':contract_id}</attribute>
+                </button>
+            </field>
+        </record>
+    </data>
+</odoo>
